@@ -1,0 +1,31 @@
+{
+  "system": {
+    "commands": {
+      "confirm_booking": {
+        "description_embed": "Hello Captain, You are added in waiting list, follow the instructions and soon you are contacted for tell you details of you flight"
+      },
+      "confirm_briefing": {
+        "description_embed": ""
+      }
+    },
+    "errors": {
+      "vid_not_found": "The VID don't have any booking in our systems",
+      "system_error": "An error ocurred, but no is your fault, contact to webmaster development in <#1077610259679551618>"
+    }
+  },
+  "commands": {
+    "confirm": {
+      "description": "Here you can confirm the event",
+      "options": {
+        "vid_description": "Insert your vid for confirm you visit"
+      }
+    },
+    "confirm_briefing": {
+      "description": "Here you can upload the briefing (only .pdf), and set destination",
+      "options": {
+        "file_description": "Upload the file only in pdf format",
+        "vid_description": "Insert vid of the user"
+      }
+    }
+  }
+}
