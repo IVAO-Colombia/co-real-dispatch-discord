@@ -10,6 +10,7 @@ const {
   GatewayIntentBits,
   Collection,
   ActivityType,
+  time,
   EmbedBuilder,
   AttachmentBuilder,
 } = require("discord.js");
@@ -50,6 +51,14 @@ client.on(Events.InteractionCreate, async (interaction) => {
   var vid;
   var briefing;
   if (interaction.commandName == "confirm-booking") {
+    var currentDate = new Date();
+    var eventDay = new Date("2024-06-22");
+    if (currentDate < eventDay) {
+      return await interaction.reply({
+        content: "Run this command on the day of the event",
+        ephemeral: true,
+      });
+    }
     vid = interaction.options.getInteger("vid");
 
     const { body, statusCode, headers } = await request(
@@ -114,6 +123,12 @@ client.on(Events.InteractionCreate, async (interaction) => {
     }
   }
   if (interaction.commandName == "confirm-briefing") {
+    if (!interaction.member.roles.cache.has("1077610256844193882")) {
+      return interaction.reply({
+        content: "You don't have permissions!",
+        ephemeral: true,
+      });
+    }
     // Get data
     vid = interaction.options.getInteger("vid");
     briefing = await interaction.options.getAttachment("briefing");
