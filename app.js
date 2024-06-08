@@ -36,7 +36,7 @@ for (const file of commandFiles) {
 client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`);
   client.user.setPresence({
-    status: "dnd",
+    status: "online",
   });
   client.user.setActivity("Proximo Evento...", {
     type: ActivityType.Competing,
