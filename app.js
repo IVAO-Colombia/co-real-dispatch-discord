@@ -36,7 +36,7 @@ for (const file of commandFiles) {
 client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`);
   client.user.setPresence({
-    status: "online",
+    status: "dnd",
   });
   client.user.setActivity("Proximo Evento...", {
     type: ActivityType.Competing,
@@ -58,6 +58,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         method: "GET",
         headers: {
           Authorization: `${process.env.IVAO_EVENT_API_KEY}`,
+          Accept: "application/json",
         },
       }
     );
@@ -135,6 +136,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         body: form,
         headers: {
           Authorization: `${process.env.IVAO_EVENT_API_KEY}`,
+          Accept: "application/json",
         },
       }
     );
@@ -177,7 +179,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       });
     } else {
       await interaction.reply({
-        content: `${messages.system.errors.system_error}... Code: ${statusCode}`,
+        content: `${messages.system.errors.system_error}... Code: ${res.status}`,
         ephemeral: true,
       });
     }
